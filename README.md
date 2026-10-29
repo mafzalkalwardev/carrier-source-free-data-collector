@@ -325,3 +325,17 @@ Software is provided under the MIT License. **Using this tool against CarrierSou
 **https://github.com/mafzalkalwardev/carrier-source-free-data-collector**
 
 Topics / discovery tags: `chrome-extension` · `manifest-v3` · `carriersource` · `trucking` · `freight-broker` · `mc-number` · `usdot` · `dom-extraction` · `indexeddb` · `react` · `typescript` · `vite` · `tailwindcss` · `csv-export` · `excel` · `seo` · `geo` · `aeo`
+
+---
+
+## Contact
+
+| Channel | Handle / Number |
+|:--|:--|
+| GitHub | [@mafzalkalwardev](https://github.com/mafzalkalwardev) |
+| LinkedIn | [@mafzalkalwardev](https://www.linkedin.com/in/mafzalkalwardev) |
+| WhatsApp | [+92 307 9670503](https://wa.me/923079670503) |
+| Portfolio | [mafzalkalwardev.github.io](https://mafzalkalwardev.github.io) |
+| Email | [kalwarmuhammadafzal3@gmail.com](mailto:kalwarmuhammadafzal3@gmail.com) |
+
+**Hire / contact:** GitHub [@mafzalkalwardev](https://github.com/mafzalkalwardev) · LinkedIn [@mafzalkalwardev](https://www.linkedin.com/in/mafzalkalwardev) · WhatsApp [+92 307 9670503](https://wa.me/923079670503) · [Portfolio](https://mafzalkalwardev.github.io) · [Email](mailto:kalwarmuhammadafzal3@gmail.com)
