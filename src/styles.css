@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --cs-ink: #0f172a;
+  --cs-muted: #64748b;
+  --cs-line: #e2e8f0;
+  --cs-accent: #1d4ed8;
+  --cs-accent-soft: #dbeafe;
+  --cs-ok: #15803d;
+  --cs-warn: #b45309;
+  --cs-danger: #b91c1c;
+  --cs-surface: #f8fafc;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(ellipse 80% 50% at 0% 0%, #dbeafe 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, #e0f2fe 0%, transparent 50%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  color: var(--cs-ink);
+  font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+@layer components {
+  .cs-card {
+    @apply rounded-xl border border-slate-200 bg-white/90 shadow-sm backdrop-blur-sm;
+  }
+  .cs-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-45;
+  }
+  .cs-btn-primary {
+    @apply cs-btn bg-brand-600 text-white hover:bg-brand-700;
+  }
+  .cs-btn-secondary {
+    @apply cs-btn border border-slate-200 bg-white text-slate-700 hover:bg-slate-50;
+  }
+  .cs-btn-danger {
+    @apply cs-btn border border-red-200 bg-red-50 text-red-700 hover:bg-red-100;
+  }
+  .cs-input {
+    @apply w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none ring-brand-500 focus:ring-2;
+  }
+  .cs-label {
+    @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500;
+  }
+}
