@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CarrierSource Free Data Collector — local Chrome research extension</title>
+  <meta name="description" content="Chrome extension that reads freely visible CarrierSource carrier cards in the page you already have open. No API access and no contact actions." />
+  <link rel="canonical" href="https://mafzalkalwardev.github.io/carrier-source-free-data-collector/" />
+  <meta property="og:title" content="CarrierSource Free Data Collector" />
+  <meta property="og:description" content="Local DOM extraction of freely visible carrier cards. Authorization stays on you." />
+  <meta property="og:image" content="https://mafzalkalwardev.github.io/carrier-source-free-data-collector/screenshots/06b-dashboard-hero.png" />
+  <meta name="theme-color" content="#eef3fb" />
+  <style>
+    :root { color-scheme: light; --ink:#142033; --muted:#52627a; --line:#d7e0ee; --card:#fff; --blue:#2457d6; --bg:#eef3fb; }
+    * { box-sizing: border-box; }
+    body { margin:0; font:16px/1.5 "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
+    a { color:var(--blue); }
+    header, main { width:min(1080px, calc(100% - 2rem)); margin:0 auto; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:1.25rem 0; }
+    .brand { font-weight:800; letter-spacing:.04em; text-decoration:none; color:var(--blue); }
+    .btn { background:var(--blue); color:#fff; text-decoration:none; font-weight:700; border-radius:10px; padding:.7rem 1rem; }
+    h1 { font-size:clamp(2rem, 5vw, 3.3rem); line-height:1.05; margin:.3rem 0 .8rem; max-width:18ch; }
+    .lede { color:var(--muted); max-width:68ch; }
+    .grid { display:grid; grid-template-columns:1.2fr .8fr; gap:1rem; margin:1.5rem 0 2.5rem; }
+    figure { margin:0; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+    img { width:100%; display:block; background:#f8fafc; }
+    figcaption { padding:.75rem .9rem; color:var(--muted); font-size:.85rem; }
+    .note { background:#fff; border:1px solid var(--line); border-radius:14px; padding:1rem 1.1rem; margin-bottom:2rem; }
+    footer { color:var(--muted); padding-bottom:2.5rem; }
+    @media (max-width: 800px) { .grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="./">CARRIERSOURCE</a>
+    <a class="btn" href="https://github.com/mafzalkalwardev/carrier-source-free-data-collector">GitHub</a>
+  </header>
+  <main>
+    <p style="font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.78rem; color:var(--blue);">Chrome extension · Manifest V3</p>
+    <h1>Free Data Collector</h1>
+    <p class="lede">A local research side panel for carrier cards that are already visible on the page. It does not use an API, does not collect contact actions, and does not bypass site restrictions. You confirm permission before collection starts.</p>
+    <div class="grid">
+      <figure>
+        <img src="screenshots/06b-dashboard-hero.png" alt="Extension panel asking for permission before any collection" />
+        <figcaption>Collection stays off until the authorization checks are confirmed.</figcaption>
+      </figure>
+      <figure>
+        <img src="screenshots/03-dashboard-stats.png" alt="Collection statistics for pages, carrier records, and skipped duplicates" />
+        <figcaption>Counts from a local run: pages, records, and duplicates skipped.</figcaption>
+      </figure>
+    </div>
+    <section class="note">
+      <strong>What the extension is for.</strong>
+      <p>It reads freely visible carrier cards in your own browser, with optional enrichment of freely accessible profile pages. CarrierSource requires permission for collection, including manual extraction. The extension does not bypass access controls, CAPTCHAs, or paid gates.</p>
+      <p>Install it from the repository as an unpacked Manifest V3 extension. The product tour on this page is the public demo.</p>
+    </section>
+    <footer>Source: <a href="https://github.com/mafzalkalwardev/carrier-source-free-data-collector">github.com/mafzalkalwardev/carrier-source-free-data-collector</a></footer>
+  </main>
+</body>
+</html>
