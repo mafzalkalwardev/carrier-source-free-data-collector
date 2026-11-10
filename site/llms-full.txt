@@ -1,0 +1,152 @@
+# CarrierSource Free Data Collector
+
+> Open-source Chrome Manifest V3 extension from INDUS Web Agency that reads freely visible CarrierSource carrier cards in the browser and exports CSV or Excel. It is not an official CarrierSource product.
+
+Canonical page: https://carriersource.induswebagency.com/
+Source code: https://github.com/mafzalkalwardev/carrier-source-free-data-collector
+Publisher: INDUS Web Agency, https://induswebagency.com/
+Contact: induswebagency@gmail.com · WhatsApp +92 307 9670503
+License: MIT, copyright 2026 mafzalkalwardev
+Extension version: 1.0.3
+
+This document restates only behavior implemented in the repository and described on the product page. It does not add user counts, testimonials, ratings, prices, or accuracy figures.
+
+## What it is
+
+CarrierSource Free Data Collector is an open-source Google Chrome extension for U.S. trucking research. It captures freely visible trucking-company cards from CarrierSource result pages and, when separately authorized, from free profile pages.
+
+It runs as a Manifest V3 extension written with TypeScript, React, Vite, and Tailwind. Collection uses DOM APIs (`querySelector`, `MutationObserver`, and scoped text parsing). Records are stored in IndexedDB in the user’s Chrome profile and reviewed in a side-panel dashboard. A small popup can capture the current page or open that dashboard.
+
+INDUS Web Agency publishes the product page. The extension is not affiliated with, endorsed by, or operated by CarrierSource. The MIT license does not grant permission to violate CarrierSource’s terms.
+
+## What it is not
+
+- It does not call CarrierSource’s private API.
+- It does not intercept network responses or reconstruct internal API payloads.
+- It does not bypass CAPTCHAs, Cloudflare checks, paywalls, subscription locks, or other access controls. If a browser verification interstitial appears, the extension waits or pauses so the person can complete it in the tab.
+- It does not collect phone numbers, email addresses, or personal contact names.
+- It does not click Contact, Request Quote, Download List, or payment controls.
+- It does not collect review body text.
+- It does not invent CarrierSource URL routes or `?page=` query parameters.
+- It is not listed on the Chrome Web Store. Installation is an unpacked load of the built `dist` folder.
+- It has no project backend, analytics endpoint, or remote collection API.
+
+## Who it is for
+
+Freight dispatchers use it to build an authorized working list of MC and USDOT numbers from carrier cards already on screen, tagged with the equipment and state filters they chose, then export CSV or Excel.
+
+Carrier researchers use it to compare freely visible equipment, authority, fleet size, safety, and insurance fields. Optional free-profile enrichment can add address and fleet breakdown when that permission is confirmed. Contact fields stay out of the record.
+
+The person using the extension is responsible for permission that covers the intended use. CarrierSource requires express written permission for scraping, including manual extraction. The extension shows that notice and keeps stronger modes behind extra checkboxes. It does not grant permission.
+
+Primary subject matter is the United States trucking market: nationwide, state, and city-filtered CarrierSource searches the live site already supports, across the 50 states, the District of Columbia, and a Nationwide tag in the planning UI.
+
+## Collection modes
+
+1. Capture Current Page. Extracts carrier cards from the active results page. Available from the popup after authorization, and from the dashboard.
+2. Capture As I Browse. Watches DOM and URL changes while the person navigates CarrierSource and skips a result set already stored.
+3. Collect All Result Pages. Disabled until the person confirms written authorization for automated traversal. It scrolls to the visible Next or Load More control and clicks it. It stops when pagination is unavailable, repeated, disabled, or blocked.
+
+Jobs can be paused, resumed, stopped, or reset. IndexedDB keeps the records and job state in that browser, including resume checkpoints.
+
+Optional dashboard filters, applied only when the relevant text is visible:
+
+- Carriers only: skip brokerage cards when they are identifiable.
+- Active authority only: skip a card whose visible authority status does not say active.
+- Include free carrier profile details: visit freely accessible profile pages only when profile enrichment is also authorized.
+
+A verified search URL queue stores CarrierSource URLs the person already opened. Equipment multi-select (Box Truck, Dry Van, Reefer, Flatbed, and the other truck types shipped in the extension) and state selectors organize the plan and tag saved records. They do not generate website URLs.
+
+## Identifiers and deduplication
+
+- MC numbers are parsed from scoped card or docket text. Leading zeros are preserved.
+- FF dockets are stored in their own field and are never treated as MC numbers.
+- USDOT is stored separately.
+- Deduplication uses the USDOT plus the MC set, including sponsored placements and the same carrier seen under more than one equipment filter.
+
+## Fields
+
+Collected only when freely visible:
+
+- Results cards can include company name, CarrierSource profile URL, MC, FF, USDOT, interstate or intrastate text, fleet size or power units, authority status and date, insurance limit, safety rating, truck types, freight categories, and a sponsored marker. A website is rare on cards.
+- Free profile pages, after separate authorization, can include address, city, business state, ZIP, docket line, USDOT, a website hyperlink only if displayed, non-contact about text, owned and leased fleet counts, truck and freight and shipment and specialized-service labels, MCS-150 mileage and year, authority dates, cargo authorization, safety and inspection and violation summaries, insurance type, company, limit, and date, and numerical rating categories.
+
+Never collected:
+
+- Phone numbers, email addresses, and personal contact names.
+- Review body text.
+- Fields behind a paywall, blur, or other lock.
+- Anything that would require clicking Contact, Request Quote, Download List, or a payment control.
+
+Empty fields stay empty when the page does not show them. The repository file `docs/DOM-FIELD-MAP.md` is the field checklist.
+
+## Export
+
+From the dashboard:
+
+- MC Numbers Only CSV, with MC, USDOT, and company name.
+- Complete Carrier CSV.
+- Excel XLSX.
+- Export Filtered CSV for the current table filter.
+
+CSV files start with a UTF-8 byte order mark so Excel opens them as UTF-8. Cells that begin with `=`, `+`, `-`, or `@` are prefixed so the spreadsheet does not treat them as formulas. Contact columns do not exist because those values are never stored. A Clear all local data control deletes the IndexedDB records.
+
+## Install
+
+Requirements: Google Chrome (or Chromium) with Manifest V3, Node.js 20 or newer, and, when collecting, a CarrierSource tab plus authorization that covers that use.
+
+1. Clone https://github.com/mafzalkalwardev/carrier-source-free-data-collector.git and open the project folder.
+2. Run `npm install`, `npm run icons`, `npm test`, and `npm run build`. Output is the `dist` folder.
+3. Open `chrome://extensions`, turn on Developer mode, choose Load unpacked, and select `dist`.
+4. Click the extension icon, then Open Dashboard.
+
+Manifest host permission is limited to `https://www.carriersource.io/*` and `https://carriersource.io/*`. Other permissions are storage, sidePanel, downloads, activeTab, scripting, and tabs.
+
+## How to use it
+
+1. Open a CarrierSource search or results page you are allowed to use and apply filters on that site.
+2. In the dashboard, acknowledge the terms notice and confirm only the written permission you actually have.
+3. Run Capture Current Page, Capture As I Browse, or, if authorized, Collect All Result Pages.
+4. Download CSV or Excel from the dashboard.
+
+If the popup says no CarrierSource tab is open, focus a tab on `https://www.carriersource.io/`. If a page yields zero cards, the results may not be rendered or the site markup may have changed. If Collect All is disabled, the terms acknowledgement and the automated-traversal authorization are not both confirmed.
+
+## Storage and privacy
+
+All records stay in IndexedDB inside the browser that ran the collection. Uninstalling or clearing the extension’s site data removes them. The project does not ship a server that receives those records.
+
+## FAQ
+
+What is CarrierSource Free Data Collector?
+CarrierSource Free Data Collector is an open-source Chrome extension that reads freely visible carrier cards on CarrierSource pages open in your browser and saves them locally for CSV or Excel export.
+
+Does the extension use the CarrierSource API?
+No. It reads the rendered page with DOM APIs only. It does not call CarrierSource’s private API or intercept network responses.
+
+Does it collect phone numbers, emails, or contact names?
+No. Phone numbers, email addresses, and personal contact names are excluded. The extension never clicks Contact, Request Quote, Download List, or payment controls.
+
+Is this an official CarrierSource product?
+No. It is an independent extension published by INDUS Web Agency. It is not affiliated with, endorsed by, or operated by CarrierSource.
+
+Where are collected records stored?
+In IndexedDB inside Google Chrome on your computer. The project has no backend, analytics endpoint, or remote collection API.
+
+Can it page through every result automatically?
+Only after you confirm written authorization for automated traversal. It then clicks the visible Next or Load More control and waits through ordinary page loads. It does not bypass Cloudflare, CAPTCHAs, paywalls, or other access checks.
+
+How do I install CarrierSource Free Data Collector?
+Build it from the public GitHub repository with Node.js 20 or newer, then load the dist folder as an unpacked extension on chrome://extensions. It is not distributed on the Chrome Web Store.
+
+What files can I export?
+An MC-only CSV, a complete carrier CSV, a filtered CSV of the current table view, and an Excel XLSX workbook. CSV files include a UTF-8 byte order mark so Excel opens them as UTF-8, and cells that look like formulas are neutralized.
+
+Which carrier fields are collected?
+Freely visible fields such as company name, MC number with leading zeros preserved, FF docket stored separately from MC, USDOT, equipment, authority, fleet size, and, when you authorize it, fields shown on free profile pages. Locked, paid, and contact fields are not collected.
+
+Who is CarrierSource Free Data Collector for?
+Freight dispatchers and carrier researchers who already have permission covering their CarrierSource use and want a local list of freely visible MC and USDOT records.
+
+## Structured data on the product page
+
+The HTML page includes JSON-LD for Organization (INDUS Web Agency), WebSite, WebPage, BreadcrumbList, SoftwareApplication with applicationCategory BrowserApplication, FAQPage, and two HowTo nodes (install and use).
