@@ -25,6 +25,8 @@
 
 **Local, permission-aware Chrome extension for U.S. trucking research — extract freely visible CarrierSource carrier cards (MC, USDOT, equipment, authority) via DOM only, then export Excel/CSV without APIs, contact scraping, or access-control bypass.**
 
+**Public site:** the static marketing page lives in [`site/`](site/). Copy that folder’s contents to the nginx web root for <https://carriersource.induswebagency.com/>. It is separate from the extension build in `dist/`.
+
 ---
 
 ## Table of contents
