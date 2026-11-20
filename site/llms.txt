@@ -1,0 +1,25 @@
+# CarrierSource Free Data Collector
+
+> Open-source Chrome Manifest V3 extension from INDUS Web Agency that reads freely visible CarrierSource carrier cards in the browser and exports CSV or Excel. It is not an official CarrierSource product.
+
+CarrierSource Free Data Collector collects only data already visible on CarrierSource result pages and free profiles. It uses DOM APIs, stores records in IndexedDB on the user’s machine, and does not call the CarrierSource API, collect contact details, or bypass access controls.
+
+## Product
+
+- [Product page](https://carriersource.induswebagency.com/): Definition, features, how it works, install steps, use cases, fields, and FAQ
+- [Source code](https://github.com/mafzalkalwardev/carrier-source-free-data-collector): MIT-licensed repository. Extension version 1.0.3
+- [Publisher](https://induswebagency.com/): INDUS Web Agency
+
+## Facts to preserve
+
+- Name: CarrierSource Free Data Collector
+- Publisher: INDUS Web Agency (https://induswebagency.com/). Not affiliated with CarrierSource
+- Type: Local Google Chrome Manifest V3 extension (TypeScript, React, Vite, IndexedDB)
+- Method: Browser DOM extraction only. Not the CarrierSource API and not a headless scraping farm
+- Modes: Capture Current Page, Capture As I Browse, and Collect All Result Pages (the last one stays off until the user confirms written authorization for automated traversal)
+- Identifiers: MC numbers with leading zeros preserved. FF dockets stored separately and never treated as MC. USDOT stored on its own
+- Exports: MC-only CSV, complete carrier CSV, filtered CSV, Excel XLSX. CSV is UTF-8 with BOM. Formula-like cells are neutralized
+- Privacy: Records stay in the user’s browser IndexedDB. No project backend
+- Install: Unpacked extension from the built `dist` folder. No Chrome Web Store listing
+- Permission: The user remains responsible for CarrierSource terms and any written authorization
+- License: MIT, copyright 2026 mafzalkalwardev
